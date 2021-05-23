@@ -29,13 +29,13 @@ function! s:select_in_packages(...)
   let target = a:0 > 0? a:1 : 'node_modules'
   let files = nodemodules#getPackages(path,target)
   " use your favorite fuzzy-finder
-  if g:nodemodules_finder == "fzf"
+  if g:nodemodules_finder == "fzf" && g:loaded_fzf
     call s:fzf_finder(path,files)
   endif
 endfunction
 
-function! g:nodemodules_open_action(path)
-  execute(":lcd ".full_path)
+function! g:Nodemodules_open_action(path)
+  execute(":lcd ".a:path)
   if g:loaded_nerd_tree
     execute(":NERDTreeCWD")
   endif
@@ -43,7 +43,7 @@ endfunction
 
 function! s:open_pacakge(path,filename)
   let full_path = join([a:path,a:filename],"/")
-  call g:function("nodemodules_open_action")(full_path)
+  call g:Nodemodules_open_action(full_path)
 endfunction
 
 function! s:fzf_finder(path,files)
