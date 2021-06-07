@@ -33,7 +33,6 @@ endfunction
 
 " get list of node_modules
 function! nodemodules#getPackages(path,pattern)
-  echo "get packages of " . a:path
   if has("patch-8.1.1120") " vim support readdir
     let files = readdir(a:path)
     return map(files,{_,val -> s:build_path_entry(a:path,val,"")})

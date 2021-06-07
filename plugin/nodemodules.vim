@@ -14,11 +14,6 @@ function! s:has_nodemodules()
   return nodemodules#getNodeModulesPath()
 endfunction
 
-" actions for selecting given package
-" navigate to package
-function! s:navigate(package_path)
-endfunction
-
 " choose between packages
 function! s:select_in_packages(...)
   let [path, is_exist ]= s:has_nodemodules()
@@ -47,7 +42,6 @@ function! s:open_pacakge(path,filename)
 endfunction
 
 function! s:fzf_finder(path,files)
-  echo "use fzf"
   if g:loaded_fzf
     call fzf#run(fzf#wrap({
       \ 'source': a:files,
